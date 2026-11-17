@@ -9,44 +9,74 @@
 /* Disediakan guru: ukuran elemen mencakup padding dan border. */
 * {
   box-sizing: border-box;
+
 }
 
 /* TODO CSS-01: Atur jenis font, warna teks, warna latar belakang,
    margin, dan padding dasar halaman. */
 body {
+  background-color: whitesmoke;
+  font-style: italic;
+  color: blueviolet;
+  margin: 100px;
+  padding: 50px;
 }
 
 /* TODO CSS-02: Atur lebar konten, posisi, padding, margin,
    border dan border-radius seperlunya. */
 .container {
+  border: 10px;
+  border-radius: 100px;
+  padding: 20px;
+  margin: 10px;
 }
 
 .kepala-halaman {
+
 }
 
 .panel {
+
 }
 
 /* TODO CSS-03: Atur ukuran input, padding, jarak antar elemen,
    warna tombol, dan tampilan yang konsisten. */
 .form-baris {
+  box-sizing: content-box;
+  background-color: aqua;
+  border-radius: 100px;
+  width: 300px;
+  object-position: center;
+  text-align: center;
+
 }
 
 .form-baris label {
+
+  padding-left: 10px;
 }
 
 .form-baris input {
+  padding-right: 10px;
+  border-radius: 10px;
 }
 
 .aksi {
+
+
 }
 
 .aksi button {
+  border-radius: 10px;
+  background-color: aqua;
 }
+
+
 
 /* TODO CSS-04: Rapikan daftar kegiatan, jumlah kegiatan, dan pesan
    status. Bedakan tampilan status berhasil dan gagal. */
 #daftarKegiatan {
+
 }
 
 #daftarKegiatan li {
