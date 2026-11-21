@@ -23,19 +23,27 @@ function tampilkanKegiatan(daftar) {
   // Disediakan guru: hapus isi daftar sebelum menampilkannya kembali.
   elemenDaftar.innerHTML = "";
 
+
   // TODO JS-01:
   // Perbaiki batas perulangan for berikut agar dimulai dari indeks pertama
   // dan memproses seluruh elemen berdasarkan panjang Array (length).
   for (let i = 0; i < 0; i++) {
     // TODO JS-02:
     // Ganti string kosong dengan elemen Array 'daftar' pada indeks i.
-    const namaKegiatan = "";
+    const namaKegiatan = daftarKegiatan[i];
 
     // Disediakan guru: pembentukan dan penampilan elemen HTML.
     const item = document.createElement("li");
     item.textContent = namaKegiatan;
     elemenDaftar.appendChild(item);
   }
+  for (let i = 0; i < daftar.length; i++) {
+    const namaKegiatan = daftar[i];
+    const item = document.createElement("li");
+    item.textContent = namaKegiatan;
+    elemenDaftar.appendChild(item);
+  }
+
 }
 
 // ================================================================
@@ -45,7 +53,7 @@ function tampilkanKegiatan(daftar) {
 // petunjuk dan bagian fungsi pada pertemuan berikutnya.
 // ================================================================
 
-function perbaruiTampilan() {
+function perbaruiTampilan(daftar) {
   tampilkanKegiatan(daftarKegiatan);
 
   const elemenTotal = document.getElementById("totalKegiatan");
@@ -56,6 +64,8 @@ function perbaruiTampilan() {
       elemenTotal.textContent = daftarKegiatan.length;
     }
   }
+  return daftar.length;
+
 }
 
 function tampilkanStatus(pesan, berhasil) {
@@ -63,6 +73,7 @@ function tampilkanStatus(pesan, berhasil) {
   if (elemenStatus === null) {
     return;
   }
+
 
   elemenStatus.textContent = pesan;
   elemenStatus.classList.remove("berhasil", "gagal");
@@ -74,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnTambah = document.getElementById("btnTambah");
   const btnCari = document.getElementById("btnCari");
   const btnHapus = document.getElementById("btnHapus");
+
 
   if (input !== null && btnTambah !== null) {
     btnTambah.addEventListener("click", function () {
@@ -88,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
       perbaruiTampilan();
     });
   }
+
 
   if (input !== null && btnCari !== null) {
     btnCari.addEventListener("click", function () {
@@ -115,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+
   perbaruiTampilan();
 });
 
@@ -130,42 +144,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // TODO JS-03, JS-04, JS-05 — Validasi dan penambahan kegiatan
 function tambahKegiatan(daftar, nama) {
-  // TODO JS-03: Simpan nama yang sudah di-trim ke variabel namaBersih.
-  // Jika namaBersih kosong, gunakan return false.
+  const namaBersih = nama.trim();
+  if (namaBersih === "") {
+    return false; // Nama kosong
+  }
 
-  // TODO JS-04: Gunakan includes() untuk menolak nama duplikat.
-  // Jika kegiatan sudah ada, gunakan return false.
 
-  // TODO JS-05: Gunakan push() untuk menambahkan namaBersih.
-  // Jika penambahan berhasil, gunakan return true.
+  if (daftar.includes(namaBersih)) {
+    return false; // Nama duplikat
+  }
 
-  return false; // SEMENTARA: ganti/hapus setelah TODO JS-03 s.d. JS-05 selesai
+
+  daftar.push(namaBersih);
+  return true; // Penambahan berhasil
+
 }
 
 // TODO JS-06 — Pencarian kegiatan
 function cariKegiatan(daftar, nama) {
-  // TODO JS-06: Hilangkan spasi awal/akhir menggunakan trim().
-  // Cari posisi kegiatan dengan indexOf(), lalu kembalikan indeksnya.
-  // Jika tidak ditemukan, indexOf() akan menghasilkan -1.
+  const namaBersih = nama.trim();
+  const indeks = daftar.indexOf(namaBersih);
+  return indeks; // Mengembalikan indeks atau -1 jika tidak ditemukan
 
-  return -1; // SEMENTARA: ganti setelah TODO JS-06 selesai
 }
+
 
 // TODO JS-07 dan JS-08 — Penghapusan kegiatan
 function hapusKegiatan(daftar, nama) {
-  // TODO JS-07: Panggil cariKegiatan(daftar, nama).
-  // Simpan hasilnya dalam variabel indeks.
+  const namaBersih = nama.trim();
+  if (namaBersih === "") {
+    return false; // Nama kosong
+  }
 
-  // TODO JS-08: Jika indeks bernilai -1, gunakan return false.
-  // Jika ditemukan, hapus satu elemen menggunakan splice().
-  // Kembalikan true jika penghapusan berhasil.
+  const indeks = cariKegiatan(daftar, nama);
+  if (indeks === -1) {
+    return false; // Kegiatan tidak ditemukan
+  }
 
-  return false; // SEMENTARA: ganti/hapus setelah TODO JS-07 s.d. JS-08 selesai
+  daftar.splice(indeks, 1); // Hapus satu elemen pada indeks yang ditemukan
+  return true; // Penghapusan berhasil
+
 }
 
-// TODO JS-09 — Menghitung jumlah kegiatan
+
+
 function hitungJumlahKegiatan(daftar) {
-  // TODO JS-09: Gunakan length dan return untuk menghasilkan jumlah kegiatan.
-
-  return 0; // SEMENTARA: ganti setelah TODO JS-09 selesai
+  return daftar.length; // Mengembalikan jumlah kegiatan dalam Array
 }
+

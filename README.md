@@ -28,3 +28,6 @@ Buka `index.html` menggunakan browser secara offline.
 
 Daftar fitur dan hasil pengujian lengkap akan dilengkapi sesuai
 instruksi Paket 3. Jangan mengerjakan bagian tersebut pada Paket 1.
+
+## updatelanjutan
+fitur yg di tambahkan tampil,tambah,cari,hapus,dan menghitung jumlah
